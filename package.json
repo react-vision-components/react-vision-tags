@@ -1,5 +1,5 @@
 {
-  "name": "@react-vision-components/react-vision-tags",
+  "name": "react-vision-tags",
   "version": "0.1.0",
   "description": "Component Library to handle Tags with confidence scores",
   "main": "dist/index.umd.js",
