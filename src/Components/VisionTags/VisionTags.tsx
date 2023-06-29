@@ -3,9 +3,9 @@ import { Vision } from '../../@types/Vision';
 
 import classnames from 'classnames';
 import VisionTag from '../VisionTag/VisionTag'
-import './VisionTags';
+import './VisionTags.css';
 import { HexInterpolator } from '../../Helpers/ColorInterpolator/ColorInterpolator';
-import ColorInterpolatorOptions from '../../Classes/ColorInterpolatorOptions';
+import ColorInterpolatorOptions from '../../Classes/ColorInterpolatorOptions/ColorInterpolatorOptions';
 
 export interface VisionTagsProps {
     name?: string;
