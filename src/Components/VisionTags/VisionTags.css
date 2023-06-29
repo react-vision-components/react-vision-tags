@@ -1,0 +1,29 @@
+[tags-container] * {
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+[tags-container] {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.375rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    line-height: 1.4;
+    padding: 0.5rem;
+}
+
+[tags-container]:focus-within {
+    border-color: #3182ce;
+    box-shadow: #3182ce 0px 0px 0px 1px;
+}
+
+[tags-input] {
+    border: 0;
+    outline: 0;
+    font-size: inherit;
+    line-height: inherit;
+    width: 50%;
+}
