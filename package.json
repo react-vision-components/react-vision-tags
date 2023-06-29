@@ -1,10 +1,15 @@
 {
-  "name": "react-vision-tags",
+  "name": "@react-vision-components/react-vision-tags",
   "version": "0.1.0",
   "description": "Component Library to handle Tags with confidence scores",
-  "main": "index.js",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "build": "vite build && tsc"
   },
   "keywords": [
@@ -31,5 +36,8 @@
   },
   "dependencies": {
     "classnames": "^2.3.2"
+  },
+  "publishConfig": {
+    "@react-vision-components:registry": "https://npm.pkg.github.com"
   }
 }
