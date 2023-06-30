@@ -99,7 +99,9 @@ export function VisionTags({
     const getColorValue = (conf: number) => {
       let valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low)))
       let distance = conf - schema.confidence.low;
-      
+      console.log('before any calculations:')
+      console.log(valuecount);
+      console.log(distance);
       if(!schema.hex.mid){
         return HexInterpolator(schema.hex.low, schema.hex.high, (valuecount * distance)).padStart(6,'0')
       }
