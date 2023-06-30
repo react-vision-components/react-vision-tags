@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Vision } from '../../@types/Vision';
+import { Vision } from '../../@types/Vision/Vision';
 
 import classnames from 'classnames';
 import VisionTag from '../VisionTag/VisionTag'
 import './VisionTags.css';
 import { HexInterpolator } from '../../Helpers/ColorInterpolator/ColorInterpolator';
-import ColorInterpolatorOptions from '../../Classes/ColorInterpolatorOptions/ColorInterpolatorOptions';
+import { ColorInterpolatorOptions } from '../../Classes/ColorInterpolatorOptions';
 
 export interface VisionTagsProps {
     name?: string;

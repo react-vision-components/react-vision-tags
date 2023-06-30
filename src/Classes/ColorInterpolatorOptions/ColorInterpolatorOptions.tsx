@@ -1,7 +1,7 @@
 import type { ColorSpectrum } from "../../@types/ColorSpectrum/ColorSpectrum";
 import { ConfidenceThreshold } from "../../@types/ConfidenceThreshold/ConfidenceThreshold";
 
-class ColorInterpolatorOptions{
+export class ColorInterpolatorOptions{
     public hex:ColorSpectrum = {
         low: 'FF0000',
         high: '00FF00'
@@ -19,5 +19,3 @@ class ColorInterpolatorOptions{
         this.confidence.high = threshold.high || 100;
     }
 }
-
-export default ColorInterpolatorOptions;
