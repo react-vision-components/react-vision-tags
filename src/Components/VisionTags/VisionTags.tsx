@@ -30,7 +30,7 @@ export interface VisionTagsProps {
 
 const defaultSeparators = ["Enter"];
 
-export const VisionTags = ({
+export function VisionTags({
     name,
     placeHolder,
     value,
@@ -46,7 +46,7 @@ export const VisionTags = ({
     beforeAddValidate,
     onKeyUp,
     classNames,
-  }: React.PropsWithChildren<VisionTagsProps>) => {
+  }: React.PropsWithChildren<VisionTagsProps>){
     const [tags, setTags] = useState<Array<Vision>>(value as Array<Vision>);
     
     const onChangeRef = useRef(false);

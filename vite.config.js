@@ -1,3 +1,4 @@
+/** @type {import('vite').UserConfig} */
 import { resolve } from "path";
 import { defineConfig } from "vite";
 
@@ -12,5 +13,6 @@ export default defineConfig ({
     rollupOptions: {
       external: ["react"],
     },
+    cssTarget
   },
 });
