@@ -1,4 +1,4 @@
-[tag] {
+[vision-tag] {
     align-items: center;
     border-radius: 0.375rem;
     display:inline-flex;
@@ -6,7 +6,7 @@
     padding: 0.15rem 0.25rem;
 }
 
-[tag-button] {
+.tag-button {
     background:none;
     border: 0;
     border-radius: 50%;
@@ -15,6 +15,6 @@
     padding: 0 0.5rem;
 }
 
-[tag-button]:hover {
+.tag-button:hover {
     color:#e53e3e;
 }

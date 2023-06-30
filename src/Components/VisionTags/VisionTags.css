@@ -1,9 +1,9 @@
-[tags-container] * {
+.tags-container * {
     box-sizing: border-box;
     transition: all 0.2s ease;
 }
 
-[tags-container] {
+.tags-container {
     align-items: center;
     background: #fff;
     border: 1px solid #ccc;
@@ -15,12 +15,12 @@
     padding: 0.5rem;
 }
 
-[tags-container]:focus-within {
+.tags-container:focus-within {
     border-color: #3182ce;
     box-shadow: #3182ce 0px 0px 0px 1px;
 }
 
-[tags-input] {
+.tags-input {
     border: 0;
     outline: 0;
     font-size: inherit;

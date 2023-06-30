@@ -125,12 +125,12 @@ export const VisionTags = ({
     }
   
     return (
-      <div tags-container="true" aria-labelledby={name}>
+      <div className={"tags-container"} aria-labelledby={name}>
         {tags.map((tag: Vision) => {
         return (
           <VisionTag
             key={tag.name}
-            className={tagColor(tag.confidence)}
+            //className={tagColor(tag.confidence)}
             text={tag.name}
             color={tagColor(tag.confidence)}
             confidence={tag.confidence || '100'}
@@ -140,8 +140,7 @@ export const VisionTags = ({
         )})}
   
         <input
-          tags-input="true"
-          className={classnames((classNames != null ? classNames.input : ''))}
+          className={classnames((classNames != null ? classNames.input : ''), 'tags-input')}
           type="text"
           name={name}
           placeholder={placeHolder}

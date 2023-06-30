@@ -26,11 +26,11 @@ export default function VisionTag({
     }
     const textColor = getTextColor(color);
     return (
-        <span vision-tag="true" style={{backgroundColor: color, color:textColor}} className={classnames(className)}>
+        <span style={{backgroundColor: color, color:textColor}} className={classnames(className, 'vision-tag')}>
             <span>{text}</span>
             {!disabled && (
                 <button
-                    tag-button="true"
+                    className={'tag-button'}
                     type="button"
                     onClick={handleOnRemove}
                     aria-label={`remove ${text}`}
