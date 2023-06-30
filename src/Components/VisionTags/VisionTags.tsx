@@ -105,14 +105,9 @@ export function VisionTags({
       }
  
       const midpoint = Math.trunc(((schema.confidence.high-schema.confidence.low)/2));
-      console.log('Midpoint:',midpoint);
       const bottomHalf = distance <= midpoint;
       if(bottomHalf){
         valuecount = Math.trunc((100/(midpoint-schema.confidence.low)))
-        console.log('bottom half');
-        console.log("value count:", valuecount);
-        console.log("distance: ",distance);
-        console.log('conf: ',conf)
         hexcolor = HexInterpolator(schema.hex.low, schema.hex.mid, (valuecount * distance)).padStart(6,'0')
         console.log('#'+hexcolor)
         return hexcolor;
@@ -120,10 +115,6 @@ export function VisionTags({
       else{
         valuecount = Math.trunc((100/(schema.confidence.high-midpoint)))
         const halfdistance = Math.trunc(distance - midpoint);
-        console.log('top half');
-        console.log("value count:", valuecount);
-        console.log("halfdistance: ",halfdistance);
-        console.log('conf: ',conf)
         hexcolor = HexInterpolator(schema.hex.mid, schema.hex.high, (valuecount * halfdistance)).padStart(6,'0')
         console.log('#'+hexcolor)
         return hexcolor

@@ -24,9 +24,10 @@ export const RGBInterpolator = (rgb: number[], rgb2:number[], percentage: number
     }
 
     const q = 1-percentage;
-    const r = Math.round(r1 * percentage + r2 * q)
-    const g = Math.round(g1 * percentage + g2 * q)
-    const b = Math.round(b1 * percentage + b2 * q)
+    const r = Math.round((r1 * percentage) + (r2 * q))
+    const g = Math.round((g1 * percentage) + (g2 * q))
+    const b = Math.round((b1 * percentage) + (b2 * q))
+    console.log('precentage: ',percentage,' q: ', q);
     console.log('after "MATH"')
     console.log('r: ', r,', g: ', g,', b1: ', b);
     return Number((r << 16) + (g << 8) + b).toString(16);
