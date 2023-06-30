@@ -100,8 +100,9 @@ export function VisionTags({
       let valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low)))
       let distance = conf - schema.confidence.low;
       console.log('before any calculations:')
-      console.log(valuecount);
-      console.log(distance);
+      console.log("value count:", valuecount);
+      console.log("distance: ",distance);
+      console.log('conf: ',conf)
       if(!schema.hex.mid){
         return HexInterpolator(schema.hex.low, schema.hex.high, (valuecount * distance)).padStart(6,'0')
       }
@@ -111,15 +112,17 @@ export function VisionTags({
       valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low))/2);
       if(bottomHalf){
         console.log('bottom half');
-        console.log(valuecount);
-        console.log(distance)
+        console.log("value count:", valuecount);
+        console.log("distance: ",distance);
+        console.log('conf: ',conf)
         return HexInterpolator(schema.hex.low, schema.hex.mid, (valuecount * distance)).padStart(6,'0')
       }
       else{
-        distance = conf - midpoint;
+        distance = distance - midpoint;
         console.log('top half');
-        console.log(valuecount);
-        console.log(distance)
+        console.log("value count:", valuecount);
+        console.log("distance: ",distance);
+        console.log('conf: ',conf)
         return HexInterpolator(schema.hex.mid, schema.hex.high, (valuecount * distance)).padStart(6,'0')
       }
     }
