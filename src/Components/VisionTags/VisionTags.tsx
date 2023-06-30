@@ -103,7 +103,7 @@ export function VisionTags({
       if(!schema.hex.mid){
         return HexInterpolator(schema.hex.low, schema.hex.high, (valuecount * distance)).padStart(6,'0')
       }
-
+ 
       const midpoint = valuecount/2;
       const bottomHalf = distance <= midpoint;
       valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low))/2);
