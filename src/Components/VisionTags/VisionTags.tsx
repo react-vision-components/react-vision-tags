@@ -97,12 +97,9 @@ export function VisionTags({
     }
 
     const getColorValue = (conf: number) => {
-      let valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low)))
-      let distance = conf - schema.confidence.low;
-      console.log('before any calculations:')
-      console.log("value count:", valuecount);
-      console.log("distance: ",distance);
-      console.log('conf: ',conf)
+      let valuecount: number = Math.trunc((100/(schema.confidence.high-schema.confidence.low)))
+      let distance: number = conf - schema.confidence.low;
+      let hexcolor: string = '';
       if(!schema.hex.mid){
         return HexInterpolator(schema.hex.low, schema.hex.high, (valuecount * distance)).padStart(6,'0')
       }
@@ -115,7 +112,9 @@ export function VisionTags({
         console.log("value count:", valuecount);
         console.log("distance: ",distance);
         console.log('conf: ',conf)
-        return HexInterpolator(schema.hex.low, schema.hex.mid, (valuecount * distance)).padStart(6,'0')
+        hexcolor = HexInterpolator(schema.hex.low, schema.hex.mid, (valuecount * distance)).padStart(6,'0')
+        console.log('#'+hexcolor)
+        return hexcolor;
       }
       else{
         const halfdistance = Math.trunc(distance - midpoint);
@@ -123,7 +122,9 @@ export function VisionTags({
         console.log("value count:", valuecount);
         console.log("halfdistance: ",halfdistance);
         console.log('conf: ',conf)
-        return HexInterpolator(schema.hex.mid, schema.hex.high, (valuecount * distance)).padStart(6,'0')
+        hexcolor = HexInterpolator(schema.hex.mid, schema.hex.high, (valuecount * distance)).padStart(6,'0')
+        console.log('#'+hexcolor)
+        return hexcolor
       }
     }
   
