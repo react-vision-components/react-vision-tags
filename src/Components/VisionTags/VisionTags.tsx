@@ -97,7 +97,9 @@ export function VisionTags({
     }
 
     const getColorValue = (conf: number) => {
-      let valuecount: number = Math.trunc((100/(schema.confidence.high-schema.confidence.low)))
+      const range: number = Math.trunc(schema.confidence.high - schema.confidence.low)
+      let valuecount: number = Math.trunc((100/range))
+      
       let distance: number = conf - schema.confidence.low;
       let hexcolor: string = '';
       if(!schema.hex.mid){
@@ -106,17 +108,15 @@ export function VisionTags({
  
       const midpoint = Math.trunc(((schema.confidence.high-schema.confidence.low)/2));
       const bottomHalf = distance <= midpoint;
+      const halfrange = Math.trunc(range/2);
+      valuecount = Math.trunc((100/(halfrange)))
       if(bottomHalf){
-        valuecount = Math.trunc((100/(midpoint-schema.confidence.low)))
         hexcolor = HexInterpolator(schema.hex.low, schema.hex.mid, (valuecount * distance)).padStart(6,'0')
-        console.log('#'+hexcolor)
         return hexcolor;
       }
       else{
-        valuecount = Math.trunc((100/(schema.confidence.high-midpoint)))
-        const halfdistance = Math.trunc(distance - midpoint);
-        hexcolor = HexInterpolator(schema.hex.mid, schema.hex.high, (valuecount * halfdistance)).padStart(6,'0')
-        console.log('#'+hexcolor)
+        distance = distance - midpoint;
+        hexcolor = HexInterpolator(schema.hex.mid, schema.hex.high, (valuecount * distance)).padStart(6,'0')
         return hexcolor
       }
     }
@@ -125,7 +125,7 @@ export function VisionTags({
       const low = Number(schema.confidence.low) < 1 ? Number(schema.confidence.low) * 100 : Number(schema.confidence.low);
       const high = Number(schema.confidence.high) < 1 ? Number(schema.confidence.high) * 100 : Number(schema.confidence.high);
       const confidence = conf !== '100' ? Math.trunc(Number(conf)*100) : 100;
-      const value = (confidence < low ? schema.hex.low : (confidence >= high ? schema.hex.high : getColorValue(confidence)))
+      const value = (confidence <= low ? schema.hex.low : (confidence >= high ? schema.hex.high : getColorValue(confidence)))
       const tagColor = `#${value}`
       return tagColor;
     }

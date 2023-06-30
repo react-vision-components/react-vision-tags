@@ -24,9 +24,10 @@ export default function VisionTag({
         e.stopPropagation();
         remove(text);
     }
+    
     const textColor = getTextColor(color);
     return (
-        <span data-color={color} style={{backgroundColor: color, color:textColor}} className={classnames(className, 'vision-tag')}>
+        <span data-color={color} data-text-color={textColor} style={{backgroundColor: color, color:textColor}} className={classnames(className, 'vision-tag')}>
             <span>{text}</span>
             {!disabled && (
                 <button
