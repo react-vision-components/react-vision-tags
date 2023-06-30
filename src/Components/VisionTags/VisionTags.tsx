@@ -125,7 +125,7 @@ export const VisionTags = ({
     }
   
     return (
-      <div tags-container aria-labelledby={name}>
+      <div tags-container={true} aria-labelledby={name}>
         {tags.map((tag: Vision) => {
         return (
           <VisionTag
@@ -140,7 +140,7 @@ export const VisionTags = ({
         )})}
   
         <input
-          tags-input
+          tags-input={true}
           className={classnames((classNames != null ? classNames.input : ''))}
           type="text"
           name={name}
