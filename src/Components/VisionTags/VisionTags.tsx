@@ -99,17 +99,18 @@ export function VisionTags({
     const getColorValue = (conf: number) => {
       let valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low)))
       let distance = conf - schema.confidence.low;
-      const midpoint = valuecount/2;
-      const bottomHalf = distance < midpoint;
+      
       if(!schema.hex.mid){
         return HexInterpolator(schema.hex.low, schema.hex.high, (valuecount * distance)).padStart(6,'0')
       }
+
+      const midpoint = valuecount/2;
+      const bottomHalf = distance <= midpoint;
+      valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low))/2);
       if(bottomHalf){
-        valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low))/2);
         return HexInterpolator(schema.hex.low, schema.hex.mid, (valuecount * distance)).padStart(6,'0')
       }
       else{
-        valuecount = Math.trunc((100/(schema.confidence.high-schema.confidence.low))/2);
         distance = conf - midpoint;
         return HexInterpolator(schema.hex.mid, schema.hex.high, (valuecount * distance)).padStart(6,'0')
       }
