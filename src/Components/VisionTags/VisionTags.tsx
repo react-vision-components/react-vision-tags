@@ -67,7 +67,7 @@ export function VisionTags({
       else setTagsRef.current = true;
     }, [value])
   
-    const handleOnKeyUp = (e: any) => {
+    const handleOnKeyDown = (e: any) => {
       e.stopPropagation();
   
       const text = e.target!.value;
@@ -78,6 +78,7 @@ export function VisionTags({
       }
   
       if(text && (separators || defaultSeparators).includes(e.key)){
+        console.log('enter pressed');
         e.preventDefault();
         if(beforeAddValidate && !beforeAddValidate(text, tags)) return;
   
@@ -85,8 +86,9 @@ export function VisionTags({
           onExisting && onExisting(text);
           return;
         }
-      
-        setTags([...tags, {name: text, confidence:'100'}]);
+
+        let newTags: Array<Vision> = [...tags, {name: text, confidence:'100'}].sort((a,b) => parseFloat(a.confidence) - parseFloat(b.confidence))
+        setTags(newTags);
         e.target.value = "";
       }
     };
@@ -150,7 +152,7 @@ export function VisionTags({
           type="text"
           name={name}
           placeholder={placeHolder}
-          onKeyDown={handleOnKeyUp}
+          onKeyDown={handleOnKeyDown}
           onBlur={onBlur}
           disabled={disabled}
           onKeyUp={onKeyUp}

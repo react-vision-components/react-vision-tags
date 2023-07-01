@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HtmlHTMLAttributes, useState } from 'react';
 import classnames from 'classnames';
 import './VisionTag.css'
 import getTextColor from '../../Helpers/ColorInterpolator/LuminanceCalculator';
@@ -19,16 +19,46 @@ export default function VisionTag({
     remove, 
     disabled,
     color,
+    confidence,
     className}: React.PropsWithChildren<VisionTagProps>){
+
+    const [displayText, setDisplayText] = useState(text)
+    const [tagWidth, setTagWidth] = useState(null);
     const handleOnRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         remove(text);
     }
-    
+
+    const handleMouseIn = (e: React.MouseEvent<HTMLSpanElement>) => {
+        e.preventDefault();
+        const el:HTMLSpanElement = e.target as HTMLSpanElement;
+        if(el.classList[0] === 'vision-tag' && !el.style.width){
+            const width = el.getBoundingClientRect().width.toString();
+            el.style.width=width + 'px';
+        }
+        //getBoundingClientRect()
+        const conf = confidence === '100' ? '100': Math.trunc((parseFloat(confidence)*100)).toString()
+        setDisplayText(conf + '%');
+    }
+
+    const handleMouseOut = (e: React.MouseEvent<HTMLSpanElement> | React.TouchEvent<HTMLSpanElement>) => {
+        setDisplayText(text);
+    }    
     const textColor = getTextColor(color);
+    function handleTouchToggle(e: React.TouchEvent<HTMLSpanElement>): void {
+        console.log(e)
+        if(displayText === text){
+            const conf = confidence === '100' ? '100': Math.trunc((parseFloat(confidence)*100)).toString()
+            setDisplayText(conf + '%');
+        }
+        else{
+            setDisplayText(text);
+        }
+    }
+
     return (
-        <span data-color={color} data-text-color={textColor} style={{backgroundColor: color, color:textColor}} className={classnames(className, 'vision-tag')}>
-            <span>{text}</span>
+        <span onMouseOver={handleMouseIn} onTouchEndCapture={handleTouchToggle} onMouseOut={handleMouseOut} data-confidence={confidence} style={{backgroundColor: color, color:textColor}} className={classnames(className, 'vision-tag')}>
+            <span>{displayText}</span>
             {!disabled && (
                 <button
                     className={'tag-button'}
@@ -36,9 +66,7 @@ export default function VisionTag({
                     onClick={handleOnRemove}
                     aria-label={`remove ${text}`}
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-                    </svg>
+                    &#10005;
                 </button>
             )}
         </span>
