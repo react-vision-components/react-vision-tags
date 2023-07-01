@@ -2,7 +2,7 @@
 	"name": "@react-vision-components/react-vision-tags",
 	"version": "0.9.2",
 	"description": "Component Library to handle Tags with confidence scores",
-  "repository": "https://github.com/react-vision-components/react-vision-tags",
+  	"repository": "https://github.com/react-vision-components/react-vision-tags",
 	"main": "dist/index.umd.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
